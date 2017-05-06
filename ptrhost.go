@@ -7,7 +7,7 @@ import (
 
 func main() {
 	flag.Parse()
-	hostname := flag.Args()[0]
+	hostname := flag.Arg(0)
 
 	addr, _ := net.LookupHost(hostname)
 	for _, v := range addr {
