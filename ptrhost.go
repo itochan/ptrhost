@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net"
 	"os"
 
@@ -20,6 +21,6 @@ func main() {
 	addr, _ := net.LookupHost(hostname)
 	for _, v := range addr {
 		ptrAddr, _ := net.LookupAddr(v)
-		println(v, "->", ptrAddr[0])
+		fmt.Println(v, "->", ptrAddr[0])
 	}
 }
