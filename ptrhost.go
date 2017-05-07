@@ -8,12 +8,21 @@ import (
 	flags "github.com/jessevdk/go-flags"
 )
 
+const version = "1.0"
+
+var opts struct {
+	Version bool `short:"v" long:"version" description:"Show version"`
+}
+
 func main() {
-	parser := flags.NewParser(nil, flags.Default)
+	parser := flags.NewParser(&opts, flags.Default)
 	parser.Usage = "HOSTNAME [OPTIONS]"
 	args, _ := parser.Parse()
 
 	if len(args) == 0 {
+		if opts.Version {
+			fmt.Println("ptrhost version", version)
+		}
 		os.Exit(1)
 	}
 
