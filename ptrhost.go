@@ -27,13 +27,13 @@ func main() {
 	}
 
 	hostname := args[0]
-	addr, _ := net.LookupHost(hostname)
-	for _, v := range addr {
-		resolvedHost, err := net.LookupAddr(v)
+	lookupHosts, _ := net.LookupHost(hostname)
+	for _, host := range lookupHosts {
+		lookupAddrs, err := net.LookupAddr(host)
 		if err == nil {
-			fmt.Println(v, "->", resolvedHost[0])
+			fmt.Println(host, "->", lookupAddrs[0])
 		} else {
-			fmt.Println(v, "->", err.(*net.DNSError).Err)
+			fmt.Println(host, "->", err.(*net.DNSError).Err)
 		}
 	}
 }
