@@ -8,7 +8,7 @@ import (
 	flags "github.com/jessevdk/go-flags"
 )
 
-const version = "1.0.0"
+const version = "1.0.1"
 
 var opts struct {
 	Version bool `short:"v" long:"version" description:"Show version"`
