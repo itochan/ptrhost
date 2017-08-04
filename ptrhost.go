@@ -17,13 +17,23 @@ var opts struct {
 func main() {
 	parser := flags.NewParser(&opts, flags.Default)
 	parser.Usage = "HOSTNAME [OPTIONS]"
-	args, _ := parser.Parse()
+	args, err := parser.Parse()
+
+	if err != nil {
+		if ferr, ok := err.(*flags.Error); ok && ferr.Type == flags.ErrHelp {
+			os.Exit(0)
+		}
+		os.Exit(1)
+	}
 
 	if len(args) == 0 {
 		if opts.Version {
 			fmt.Println("ptrhost version", version)
+			os.Exit(0)
 		}
-		os.Exit(1)
+
+		parser.WriteHelp(os.Stderr)
+		os.Exit(0)
 	}
 
 	hostname := args[0]
