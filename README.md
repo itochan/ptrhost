@@ -1,6 +1,14 @@
 # ptrhost
 Query PTR record from hostname
 
+# Installation
+
+Requirement: Go
+
+```
+% go get github.com/itochan/ptrhost
+```
+
 # Usage
 ```
 % ptrhost itochan.jp
